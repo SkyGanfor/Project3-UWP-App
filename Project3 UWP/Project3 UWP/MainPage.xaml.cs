@@ -26,5 +26,10 @@ namespace Project3_UWP
         {
             this.InitializeComponent();
         }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //Ignore
+        }
     }
 }
