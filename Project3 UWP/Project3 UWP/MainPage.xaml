@@ -5,10 +5,11 @@
     xmlns:local="using:Project3_UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:ClassLibrary1"
     mc:Ignorable="d">
 
     <Grid x:Name="GUI" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="-10,-10,10,10" Width="360" Loaded="Grid_Loaded">
-        <TextBox x:Name="txtBoxInput" Margin="10,0,0,548" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left" Width="189" TextChanged="textBox_TextChanged" RenderTransformOrigin="0.493,0.516" Height="32" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtBoxInput" Margin="10,60,0,548" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left" Width="189" TextChanged="textBox_TextChanged" RenderTransformOrigin="0.493,0.516" Height="32" VerticalAlignment="Bottom"/>
         <TextBlock x:Name="labelEnter" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="Enter Student ID:" VerticalAlignment="Top"/>
         <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="275,60,0,0" VerticalAlignment="Top" Width="75" Click="btnSearch_Click"/>
         <TextBlock x:Name="labelName" HorizontalAlignment="Left" Margin="10,122,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
@@ -16,13 +17,13 @@
         <TextBlock x:Name="txtBlockName" HorizontalAlignment="Left" Margin="60,122,0,0" TextWrapping="Wrap" Text="(blank)" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtBlockID" HorizontalAlignment="Left" Margin="204,122,0,0" TextWrapping="Wrap" Text="(blank)" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="91,552,0,0" TextWrapping="Wrap" Text="Percentage of Completion" VerticalAlignment="Top" Width="189"/>
-        <TextBlock x:Name="labelCore" HorizontalAlignment="Left" Margin="10,585,0,0" TextWrapping="Wrap" Text="Core:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
-        <TextBlock x:Name="labelGen" HorizontalAlignment="Left" Margin="90,585,0,0" TextWrapping="Wrap" Text="Gen Ed:" VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock x:Name="labelOverall" HorizontalAlignment="Left" Margin="275,585,0,0" TextWrapping="Wrap" Text="Overall" VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock x:Name="labelElec" HorizontalAlignment="Left" Margin="186,585,0,0" TextWrapping="Wrap" Text="Elective" VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock x:Name="txtBlockCore" HorizontalAlignment="Left" Margin="47,585,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top" Width="31" FontSize="14"/>
-        <TextBlock x:Name="txtBlockGen" HorizontalAlignment="Left" Margin="142,585,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top" Width="31" FontSize="14" RenderTransformOrigin="0.492,0.395"/>
-        <TextBlock x:Name="txtBlockElec" HorizontalAlignment="Left" Margin="237,585,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top" Width="31" FontSize="14" RenderTransformOrigin="0.46,0.5"/>
-        <TextBlock x:Name="txtBlockOverall" HorizontalAlignment="Left" Margin="323,585,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top" Width="31" FontSize="14"/>
+        <TextBlock x:Name="labelCore" HorizontalAlignment="Left" Margin="10,585,0,0" TextWrapping="Wrap" Text="Core %" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelGen" HorizontalAlignment="Left" Margin="90,585,0,0" TextWrapping="Wrap" Text="Gen Ed %" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="labelElec" HorizontalAlignment="Left" Margin="186,585,0,0" TextWrapping="Wrap" Text="Elective %" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="labelOverall" HorizontalAlignment="Left" Margin="275,585,0,0" TextWrapping="Wrap" Text="Overall %" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="txtBlockCore" HorizontalAlignment="Left" Margin="10,611,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14"/>
+        <TextBlock x:Name="txtBlockGen" HorizontalAlignment="Left" Margin="90,611,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14" RenderTransformOrigin="0.492,0.395"/>
+        <TextBlock x:Name="txtBlockElec" HorizontalAlignment="Left" Margin="186,611,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14" RenderTransformOrigin="0.46,0.5"/>
+        <TextBlock x:Name="txtBlockOverall" HorizontalAlignment="Left" Margin="275,611,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14"/>
     </Grid>
 </Page>

@@ -99,12 +99,15 @@ namespace Project3_UWP
 
             txtBlockName.Text = String.Format("{0} {1}", student.FirstName, student.LastName);
             txtBlockID.Text = student.ID;
-            txtBlockCore.Text = Math.Round((numCore / 26), 2).ToString();
-            txtBlockElec.Text = Math.Round((numElective / 8), 2).ToString();
-            txtBlockGen.Text = Math.Round((numGen / 8), 2).ToString();
-            txtBlockOverall.Text = Math.Round(((numCore + numGen + numElective) / 42), 2).ToString();
+            txtBlockCore.Text = (Math.Round((numCore / 26), 2) * 100).ToString();
+            txtBlockElec.Text = (Math.Round((numElective / 8), 2) * 100).ToString();
+            txtBlockGen.Text = (Math.Round((numGen / 8), 2) * 100).ToString();
+            txtBlockOverall.Text = (Math.Round(((numCore + numGen + numElective) / 42), 2) * 100).ToString();
 
-            "(insert Grid Here)".DataSource = student.Courses;
+
+
+
+
         }
 
         private async void NullStudent()
