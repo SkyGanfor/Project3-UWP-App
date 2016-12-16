@@ -9,6 +9,7 @@ namespace ClassLibrary1
     public class Student
     {
         private static uint currentID;
+        private static bool firstGenerate = false;
 
         public string FirstName { get { return _firstName; } set { _firstName = value; } }
         private string _firstName;
@@ -44,7 +45,7 @@ namespace ClassLibrary1
 
         public Student() { }
 
-        public void AddNames()
+        public static void AddNames()
         {
             maleN.Add("Adam");
             maleN.Add("Austin");
@@ -64,6 +65,11 @@ namespace ClassLibrary1
 
         public static Student Generate(string gender)
         {
+            if (firstGenerate == false)
+            {
+                AddNames();
+                firstGenerate = true;
+            }
             List<Course> c = new List<Course>();
             Course.ManageData();
             for (int i = 0; i < 4; i++)
@@ -71,7 +77,7 @@ namespace ClassLibrary1
                 c.Add(Course.Generate());
             }
 
-            return new Student(GetName("M"), lastN[rnd.Next(1,5)] , currentID++, c);
+            return new Student(GetName("M"), lastN[rnd.Next(0,4)] , currentID++, c);
         }
 
 
@@ -80,9 +86,9 @@ namespace ClassLibrary1
             switch (gender)
             {
                 case "M":
-                    return maleN[rnd.Next(1, 5)];
+                    return maleN[rnd.Next(0, 4)];
                 case "F":
-                    return femaleN[rnd.Next(1, 5)];
+                    return femaleN[rnd.Next(0, 4)];
                 default:
                     throw new ArgumentException("Argument is not a gender!", "gender");
             }
