@@ -16,7 +16,7 @@ namespace ClassLibrary1
             {
                 CreateJson();
             }
-            StreamReader sr = new StreamReader("data.json");
+            StreamReader sr = new StreamReader(File.OpenRead("data.json"));
             Student[] students = JsonConvert.DeserializeObject<Student[]>(sr.ReadToEnd());
 
             return students;
@@ -31,10 +31,10 @@ namespace ClassLibrary1
                 students[i] = s;
             }
             string json = JsonConvert.SerializeObject(students);
-            StreamWriter sw = new StreamWriter("data.json", false, Encoding.UTF8);
+            StreamWriter sw = new StreamWriter(File.Open("data.json", FileMode.Open), Encoding.UTF8);
             sw.WriteLine(json);
             sw.Flush();
-            sw.Close();
+            sw.Dispose();
         }
 
         public Student SearchByID(Student[] student, string ID)
