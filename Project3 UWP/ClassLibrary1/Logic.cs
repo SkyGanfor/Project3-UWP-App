@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace ClassLibrary1
 {
@@ -43,6 +44,27 @@ namespace ClassLibrary1
             var s = student.FirstOrDefault(st => st.ID.Contains(ID));
 
             return s;
+        }
+
+        public static async Task<Student[]> LoadFromJsonAsync(string JsonFile)
+        {
+            string JsonString = await DeserializeFileAsync(JsonFile);
+            if (JsonString != null)
+                return JsonConvert.DeserializeObject<Student[]>(JsonString);
+            return null;
+        }
+
+        private static async Task<string> DeserializeFileAsync(string fileName)
+        {
+            try
+            {
+                StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+                return await FileIO.ReadTextAsync(localFile);
+            }
+            catch (FileNotFoundException)
+            {
+                return null;
+            }
         }
 
 
