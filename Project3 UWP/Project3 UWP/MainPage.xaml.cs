@@ -51,6 +51,12 @@ namespace Project3_UWP
             if (student != null)
             {
                 DisplayStudent(student);
+
+                List<Course> courses = student.Courses;
+                foreach (var course in courses)
+                {
+                    listBoxCourses.Items.Add(course);
+                }
             }
             else
             {
@@ -114,6 +120,21 @@ namespace Project3_UWP
         {
             MessageDialog msgbox = new MessageDialog("No Student Record Found, Please Input Valid Student ID");
             await msgbox.ShowAsync();
+        }
+
+        private void listBoxCourse_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            Course course = (Course)listBoxCourses.SelectedItem;
+
+            textBlockCourseName.Text = course.Name;
+            textBlockCourseNumber.Text = course.Number;
+            textBlockCourseType.Text = course.CourseType;
+            textBlockCourseSemester.Text = course.Semster;
+            textBlockCourseYear.Text = course.Year;
+            textBlockCourseID.Text = course.ID.ToString();
+            textBlockCourseGrade.Text = course.Grade;
+            textBlockCourseCredits.Text = course.Credit;
+
         }
     }
 }

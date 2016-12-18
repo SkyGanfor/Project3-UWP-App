@@ -22,6 +22,7 @@ namespace ClassLibrary1
 
         public List<Course> Courses { get { return _courses; } set { _courses = value; } }
         List<Course> _courses;
+
         public static List<string> maleN = new List<string>();
         public static List<string> femaleN = new List<string>();
         public static List<string> lastN = new List<string>();
