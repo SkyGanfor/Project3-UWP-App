@@ -17,9 +17,10 @@ namespace ClassLibrary1
             {
                 CreateJson();
             }
-            StreamReader sr = new StreamReader(File.OpenRead("data.json"));
-            Student[] students = JsonConvert.DeserializeObject<Student[]>(sr.ReadToEnd());
-
+            Task<Student[]> r = LoadFromJsonAsync("data.json");
+            r.Start();
+            r.Wait();
+            Student[] students = r.Result;
             return students;
         }
 
@@ -33,10 +34,7 @@ namespace ClassLibrary1
                 students[i] = s;
             }
             string json = JsonConvert.SerializeObject(students);
-            StreamWriter sw = new StreamWriter(File.Open("data.json", FileMode.Open), Encoding.UTF8);
-            sw.WriteLine(json);
-            sw.Flush();
-            sw.Dispose();
+            WriteToJsonAsync("data.json", json);
         }
 
         public Student SearchByID(Student[] student, string ID)
@@ -67,6 +65,12 @@ namespace ClassLibrary1
             }
         }
 
+        public static async void WriteToJsonAsync(string JsonFile, string json)
+        {
+            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(JsonFile);
+            await FileIO.WriteTextAsync(localFile, json);
+            return;
+        }
 
         public double PercentComplete(IEnumerable<Course> courses)
         {
