@@ -50,11 +50,15 @@ namespace Project3_UWP
             var student = logic.SearchByID(students, id);
             if (student != null)
             {
+                ClearInfo();
                 DisplayStudent(student);
 
                 List<Course> courses = student.Courses;
                 foreach (var course in courses)
                 {
+                    // I want the list box to display
+                    // listBoxCourses.Items.Add(course.Name);
+                    // while still holding the course information.
                     listBoxCourses.Items.Add(course);
                 }
             }
@@ -134,6 +138,22 @@ namespace Project3_UWP
             textBlockCourseID.Text = course.ID.ToString();
             textBlockCourseGrade.Text = course.Grade;
             textBlockCourseCredits.Text = course.Credit;
+
+        }
+
+        private void ClearInfo()
+        {
+            txtBoxInput.Text = "";
+            listBoxCourses.Items.Clear();
+
+            textBlockCourseName.Text = "";
+            textBlockCourseNumber.Text = "";
+            textBlockCourseType.Text = "";
+            textBlockCourseSemester.Text = "";
+            textBlockCourseYear.Text = "";
+            textBlockCourseID.Text = "";
+            textBlockCourseGrade.Text = "";
+            textBlockCourseCredits.Text = "";
 
         }
     }
