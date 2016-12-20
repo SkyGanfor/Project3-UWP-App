@@ -5,9 +5,49 @@
     xmlns:local="using:Project3_UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:data="using:ClassLibrary1"
+    mc:Ignorable="d" Height="625" Width="366">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="GUI" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="-10,-10,10,10" Width="360" Loaded="Grid_Loaded">
+        <TextBox x:Name="txtBoxInput" Margin="10,0,0,533" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" Width="189" TextChanged="textBox_TextChanged" RenderTransformOrigin="0.493,0.516" Height="32" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="labelEnter" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Enter Student ID:" VerticalAlignment="Top"/>
+        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="275,60,0,0" VerticalAlignment="Top" Width="75" Click="btnSearch_Click"/>
 
+        <TextBlock x:Name="labelName" HorizontalAlignment="Left" Margin="10,122,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="labeID" HorizontalAlignment="Left" Margin="181,122,0,0" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtBlockName" HorizontalAlignment="Left" Margin="60,122,0,0" TextWrapping="Wrap" Text="(blank)" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtBlockID" HorizontalAlignment="Left" Margin="204,122,0,0" TextWrapping="Wrap" Text="(blank)" VerticalAlignment="Top"/>
+
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,180,0,0" TextWrapping="Wrap" Text="Courses:" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBoxCourses" HorizontalAlignment="Left" Height="130" Margin="10,205,0,0" VerticalAlignment="Top" Width="340" DoubleTapped="listBoxCourse_DoubleTapped"/>
+
+        <TextBlock x:Name="labelCourseInfo" HorizontalAlignment="Left" Margin="10,350,0,0" TextWrapping="Wrap" Text="Course Information" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseName" HorizontalAlignment="Left" Margin="10,380,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseNumber" HorizontalAlignment="Left" Margin="10,400,0,0" TextWrapping="Wrap" Text="Number:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseType" HorizontalAlignment="Left" Margin="10,420,0,0" TextWrapping="Wrap" Text="Course Type:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseSemester" HorizontalAlignment="Left" Margin="10,440,0,0" TextWrapping="Wrap" Text="Semester:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseYear" HorizontalAlignment="Left" Margin="10,460,0,0" TextWrapping="Wrap" Text="Year:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseID" HorizontalAlignment="Left" Margin="10,480,0,0" TextWrapping="Wrap" Text="Course ID:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseGrade" HorizontalAlignment="Left" Margin="10,500,0,0" TextWrapping="Wrap" Text="Grade:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelCourseCredits" HorizontalAlignment="Left" Margin="10,520,0,0" TextWrapping="Wrap" Text="Credits:" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+
+        <TextBlock x:Name="textBlockCourseName" HorizontalAlignment="Left" Margin="130,380,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="textBlockCourseNumber" HorizontalAlignment="Left" Margin="130,400,0,0" TextWrapping="Wrap" Text="Number" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="textBlockCourseType" HorizontalAlignment="Left" Margin="130,420,0,0" TextWrapping="Wrap" Text="Course Type" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="textBlockCourseSemester" HorizontalAlignment="Left" Margin="130,440,0,0" TextWrapping="Wrap" Text="Semester" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="textBlockCourseYear" HorizontalAlignment="Left" Margin="130,460,0,0" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="textBlockCourseID" HorizontalAlignment="Left" Margin="130,480,0,0" TextWrapping="Wrap" Text="Course ID" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="textBlockCourseGrade" HorizontalAlignment="Left" Margin="130,500,0,0" TextWrapping="Wrap" Text="Grade" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="textBlockCourseCredits" HorizontalAlignment="Left" Margin="130,520,0,0" TextWrapping="Wrap" Text="Credits" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+
+        <TextBlock x:Name="labelCompletion" HorizontalAlignment="Left" Margin="91,552,0,0" TextWrapping="Wrap" Text="Percentage of Completion" VerticalAlignment="Top" Width="189"/>
+        <TextBlock x:Name="labelCore" HorizontalAlignment="Left" Margin="10,570,0,0" TextWrapping="Wrap" Text="Core %" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.575" FontSize="14"/>
+        <TextBlock x:Name="labelGen" HorizontalAlignment="Left" Margin="90,570,0,0" TextWrapping="Wrap" Text="Gen Ed %" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="labelElec" HorizontalAlignment="Left" Margin="186,570,0,0" TextWrapping="Wrap" Text="Elective %" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="labelOverall" HorizontalAlignment="Left" Margin="275,570,0,0" TextWrapping="Wrap" Text="Overall %" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="txtBlockCore" HorizontalAlignment="Left" Margin="10,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14"/>
+        <TextBlock x:Name="txtBlockGen" HorizontalAlignment="Left" Margin="90,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14" RenderTransformOrigin="0.492,0.395"/>
+        <TextBlock x:Name="txtBlockElec" HorizontalAlignment="Left" Margin="186,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14" RenderTransformOrigin="0.46,0.5"/>
+        <TextBlock x:Name="txtBlockOverall" HorizontalAlignment="Left" Margin="275,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" FontSize="14"/>
     </Grid>
 </Page>

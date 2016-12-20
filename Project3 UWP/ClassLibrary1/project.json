@@ -1,7 +1,6 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "MyToolkit.Extended": "2.5.16",
     "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
