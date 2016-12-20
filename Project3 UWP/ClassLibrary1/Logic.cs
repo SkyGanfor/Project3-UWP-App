@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -13,15 +14,20 @@ namespace ClassLibrary1
     {
         public Student[] LoadStudentFromJson()
         {
-            if (!File.Exists("data.json"))
+            Task<bool> res = isFilePresent("data.json");
+            if (!AsyncHelper.RunSync<bool>(() => isFilePresent("data.json")))
             {
                 CreateJson();
             }
             Task<Student[]> r = LoadFromJsonAsync("data.json");
-            r.Start();
-            r.Wait();
             Student[] students = r.Result;
             return students;
+        }
+
+        public async Task<bool> isFilePresent(string fileName)
+        {
+            var item = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName);
+            return item != null;
         }
 
         public void CreateJson()
@@ -67,9 +73,36 @@ namespace ClassLibrary1
 
         public static async void WriteToJsonAsync(string JsonFile, string json)
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(JsonFile);
+            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(JsonFile);
             await FileIO.WriteTextAsync(localFile, json);
             return;
+        }
+
+        internal static class AsyncHelper
+        {
+            private static readonly TaskFactory _myTaskFactory = new
+              TaskFactory(CancellationToken.None,
+                          TaskCreationOptions.None,
+                          TaskContinuationOptions.None,
+                          TaskScheduler.Default);
+
+            public static TResult RunSync<TResult>(Func<Task<TResult>> func)
+            {
+                return AsyncHelper._myTaskFactory
+                  .StartNew<Task<TResult>>(func)
+                  .Unwrap<TResult>()
+                  .GetAwaiter()
+                  .GetResult();
+            }
+
+            public static void RunSync(Func<Task> func)
+            {
+                AsyncHelper._myTaskFactory
+                  .StartNew<Task>(func)
+                  .Unwrap()
+                  .GetAwaiter()
+                  .GetResult();
+            }
         }
 
         public double PercentComplete(IEnumerable<Course> courses)
