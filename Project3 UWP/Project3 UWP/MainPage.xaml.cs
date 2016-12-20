@@ -56,10 +56,7 @@ namespace Project3_UWP
                 List<Course> courses = student.Courses;
                 foreach (var course in courses)
                 {
-                    // I want the list box to display
-                    // listBoxCourses.Items.Add(course.Name);
-                    // while still holding the course information.
-                    listBoxCourses.Items.Add(course);
+                    listBoxCourses.Items.Add(course.Name);
                 }
             }
             else
@@ -128,22 +125,31 @@ namespace Project3_UWP
 
         private void listBoxCourse_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            Course course = (Course)listBoxCourses.SelectedItem;
+            var id = txtBoxInput.Text;
+            var student = logic.SearchByID(students, id);
+            string selection = listBoxCourses.SelectedItem.ToString();
+            List<Course> courses = student.Courses;
+            var courseInfo = from c in courses
+                             where c.Name == selection
+                             select c;
 
-            textBlockCourseName.Text = course.Name;
-            textBlockCourseNumber.Text = course.Number;
-            textBlockCourseType.Text = course.CourseType;
-            textBlockCourseSemester.Text = course.Semster;
-            textBlockCourseYear.Text = course.Year;
-            textBlockCourseID.Text = course.ID.ToString();
-            textBlockCourseGrade.Text = course.Grade;
-            textBlockCourseCredits.Text = course.Credit;
+            foreach (var course in courseInfo)
+            {
+                textBlockCourseName.Text = course.Name;
+                textBlockCourseNumber.Text = course.Number;
+                textBlockCourseType.Text = course.CourseType;
+                textBlockCourseSemester.Text = course.Semster;
+                textBlockCourseYear.Text = course.Year;
+                textBlockCourseID.Text = course.ID.ToString();
+                textBlockCourseGrade.Text = course.Grade;
+                textBlockCourseCredits.Text = course.Credit;
+            }
+            
 
         }
 
         private void ClearInfo()
         {
-            txtBoxInput.Text = "";
             listBoxCourses.Items.Clear();
 
             textBlockCourseName.Text = "";
